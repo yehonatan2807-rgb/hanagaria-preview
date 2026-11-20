@@ -1,0 +1,17 @@
+{
+ "name": "הנגריה",
+ "short_name": "הנגריה",
+ "lang": "he",
+ "dir": "rtl",
+ "start_url": "/hanagaria-preview/",
+ "display": "browser",
+ "background_color": "#eee5d6",
+ "theme_color": "#eee5d6",
+ "icons": [
+  {
+   "src": "/hanagaria-preview/assets/favicon.svg",
+   "sizes": "any",
+   "type": "image/svg+xml"
+  }
+ ]
+}
