@@ -421,10 +421,21 @@ html[dir="ltr"] .hv-media::after{background:linear-gradient(to right,rgba(18,13,
   .js.motion-on .craft-fig{justify-self:center}
   .js.motion-on .craft-frame{height:min(44svh,400px);aspect-ratio:4/5}
 }
-
 /* background films: never show the phone's own play button over the still frame */
 video::-webkit-media-controls { display: none !important; -webkit-appearance: none; }
 video::-webkit-media-controls-panel { display: none !important; -webkit-appearance: none; }
 video::-webkit-media-controls-play-button { display: none !important; -webkit-appearance: none; }
 video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
 video::-webkit-media-controls-overlay-play-button { display: none !important; -webkit-appearance: none; }
+/* way into the 3D studio */
+.nav a[href$="studio.html"],.mobile-menu a[href$="studio.html"]{color:#cf9d5c}
+.studio-cta{--ink:#f2e9dc;--muted:#bcab95;--accent:#cf9d5c;--on-accent:#120d09;background:#120d09;color:var(--ink);border-top:1px solid #3a2d21;padding-block:clamp(40px,5vw,64px)}
+.studio-cta-in{display:flex;align-items:center;justify-content:space-between;gap:clamp(24px,5vw,72px)}
+.studio-cta .sec-title{margin:0 0 8px}
+.studio-cta p{margin:0;max-width:56ch;color:var(--muted)}
+.studio-cta .btn{flex:none}
+.studio-cta .btn-primary{background:var(--accent);color:var(--on-accent)}
+@media (hover:hover) and (pointer:fine){.nav a[href$="studio.html"]:hover{color:#f2e9dc}.studio-cta .btn-primary:hover{background:var(--ink);color:#120d09}}
+@media (max-width:1180px) and (min-width:961px){.nav ul{gap:18px}}
+@media (max-width:760px){.studio-cta-in{flex-direction:column;align-items:stretch}}
+.site-header.menu-open{background:#120d09;color:#f2e9dc}

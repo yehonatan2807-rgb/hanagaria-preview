@@ -178,6 +178,8 @@ body.proj .tabs,body.proj .prog,body.proj .foot{display:none!important}
 .projbox>p{margin:0 0 14px;color:var(--muted)}
 .projbox .spec{margin-bottom:14px}
 @media (max-width:900px){.projbox h2{font-size:1.9rem}.projbox>p{display:none}.projbox .spec div{padding:4px 0;font-size:.92rem}}
+.tohome{display:inline-flex;align-items:center;min-height:42px;padding:6px 14px;background:rgba(18,13,9,.88);border:1px solid rgba(242,233,220,.14);color:var(--ink);font-weight:600;text-decoration:none}
+@media (max-width:900px){.tohome{min-height:40px;padding:4px 10px;font-size:.88rem}}
 </style>
 </head>
 <body>
@@ -232,7 +234,7 @@ body.proj .tabs,body.proj .prog,body.proj .foot{display:none!important}
     <canvas id="gl" role="img" aria-label="הדמיה תלת־ממדית של הרהיט. אפשר לגרור כדי לסובב."></canvas>
     <div class="sheet" id="sheet"></div><i class="cut" aria-hidden="true"></i>
     <div class="lb" id="lw"></div><div class="lb" id="lh"></div><div class="lb" id="ld"></div>
-    <div class="bar"><div class="seg"><button id="mDraw">שרטוט</button><button id="mRender">הדמיה</button></div></div>
+    <div class="bar"><div class="seg"><button id="mDraw">שרטוט</button><button id="mRender">הדמיה</button></div><a class="tohome" href="/hanagaria-preview/">חזרה לאתר</a></div>
     <div class="tools">
       <button class="r" id="doors">דלתות</button><button class="r" id="eve">ערב</button><button class="r" id="rebuild">בנו אותו שוב</button>
     </div>
