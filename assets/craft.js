@@ -1,7 +1,7 @@
 /* הנגריה · scroll stage "מהשרטוט לבית".
    The track is pinned; scroll drives one value q (0..1) through the five steps:
    sketch draws in, raw wood wipes across, colour arrives, the piece settles in place.
-   The last ~28% of the track is a hold on the finished piece. Once finished it stays
+   The last ~20% of the track is a hold on the finished piece. Once finished it stays
    finished until reload, and the pin collapses so scrolling back up never stalls. */
 (function () {
   "use strict";
@@ -13,7 +13,7 @@
   if (!sec || !root.classList.contains("motion-on")) return;
   var track = sec.querySelector(".craft-track"), fig = sec.querySelector(".craft-frame");
   var rule = sec.querySelector(".craft-rule"), steps = [].slice.call(sec.querySelectorAll(".process-steps li"));
-  var HOLD = 0.28, target = 0, q = 0, done = false, raf = 0, collapsed = false, idle = 0;
+  var HOLD = 0.2, target = 0, q = 0, done = false, raf = 0, collapsed = false, idle = 0;
   [].forEach.call(sec.querySelectorAll("img"), function (im) { im.loading = "eager"; });
 
   function clamp(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
@@ -27,17 +27,17 @@
     return clamp((hdr - r.top) / span / (1 - HOLD));
   }
   function paint(v) {
-    fig.style.setProperty("--sk", seg(v, 0.02, 0.30).toFixed(4));
-    fig.style.setProperty("--raw", seg(v, 0.36, 0.62).toFixed(4));
-    fig.style.setProperty("--col", seg(v, 0.62, 0.82).toFixed(4));
-    fig.style.setProperty("--set", seg(v, 0.82, 1).toFixed(4));
+    fig.style.setProperty("--sk", seg(v, 0.02, 0.36).toFixed(4));
+    fig.style.setProperty("--raw", seg(v, 0.42, 0.66).toFixed(4));
+    fig.style.setProperty("--col", seg(v, 0.66, 0.84).toFixed(4));
+    fig.style.setProperty("--set", seg(v, 0.84, 1).toFixed(4));
     if (rule) rule.style.setProperty("--p", clamp(v).toFixed(4));
     steps.forEach(function (li, i) { li.classList.toggle("on", i === 0 ? v > 0.004 : v >= i * 0.2); });
   }
   function tick() {
     raf = 0;
     var d = target - q;
-    q = Math.abs(d) < 0.001 ? target : q + d * 0.14;
+    q = Math.abs(d) < 0.001 ? target : q + d * 0.07;
     paint(q);
     if (q >= 0.999) done = true;
     if (q !== target) raf = requestAnimationFrame(tick);

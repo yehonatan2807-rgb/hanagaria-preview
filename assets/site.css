@@ -387,3 +387,37 @@ html[dir="ltr"] .hv-media::after{background:linear-gradient(to right,rgba(18,13,
 .hero-v:hover .vid-pause,.about-video:hover .vid-pause{opacity:.65}
 .vid-pause:hover,.vid-pause:focus-visible,.vid-pause.is-paused{opacity:1}
 @media (hover:none){ .vid-pause{opacity:.28} .vid-pause.is-paused{opacity:.9} }
+/* scroll band: slower, larger, sharper cabinet */
+.js.motion-on .craft-track{height:420vh}
+@media (min-width:961px){
+  .craft-in{grid-template-columns:minmax(0,1fr) auto;gap:clamp(40px,6vw,96px)}
+  .craft-fig,.js.motion-on .craft-fig{width:auto;justify-self:end}
+  .craft-frame{height:min(calc(100svh - var(--header-h) - 64px),760px);aspect-ratio:4/5}
+}
+@media (max-width:960px){
+  .js.motion-on .craft-track{height:340vh}
+  .js.motion-on .craft-frame{height:min(42svh,380px)}
+}
+/* scroll band, first stage: a real technical drawing that draws itself */
+.craft-frame svg.c-sk{position:absolute;inset:0;width:100%;height:100%;--k:1}
+.js.motion-on .c-sk{clip-path:none}
+.js.motion-on .craft-frame > svg.c-sk{transform:scale(calc(1.035 - var(--set,0) * .035))}
+.c-sk .d{fill:none;stroke:#2b2620;stroke-linecap:square;stroke-dasharray:1;stroke-dashoffset:calc(1 - clamp(0,(var(--sk,0) - var(--a)) / .3,1))}
+.c-sk .h{stroke-width:calc(5px * var(--k))}
+.c-sk .m{stroke-width:calc(3px * var(--k))}
+.c-sk .t2{stroke-width:calc(2px * var(--k));stroke:#4c443b}
+.c-sk .f{stroke-width:calc(1.5px * var(--k));stroke:#6b6054}
+.c-sk .k{stroke-width:calc(3px * var(--k));stroke:#85561f}
+.c-sk .hh,.c-sk .cl,.c-sk .t{opacity:clamp(0,(var(--sk,0) - var(--a)) / .18,1)}
+.c-sk .hh{mix-blend-mode:multiply}
+.c-sk .cl{fill:none;stroke:#85561f;stroke-width:calc(1.5px * var(--k));stroke-dasharray:34 8 6 8}
+.c-sk .dgrid{opacity:clamp(0,var(--sk,0) * 5,1)}
+.c-sk text{font-family:var(--font-body);fill:#2b2620;paint-order:stroke;stroke:#f3eee3;stroke-width:9px}
+.c-sk .dm{font-size:36px;font-weight:600;fill:#6f4716}
+.c-sk .tb{font-size:50px;font-weight:700}
+.c-sk .ts{font-size:32px;font-weight:600}
+@media (max-width:960px){
+  .craft-frame svg.c-sk{--k:1.7}
+  .js.motion-on .craft-fig{justify-self:center}
+  .js.motion-on .craft-frame{height:min(44svh,400px);aspect-ratio:4/5}
+}
