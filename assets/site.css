@@ -421,3 +421,10 @@ html[dir="ltr"] .hv-media::after{background:linear-gradient(to right,rgba(18,13,
   .js.motion-on .craft-fig{justify-self:center}
   .js.motion-on .craft-frame{height:min(44svh,400px);aspect-ratio:4/5}
 }
+
+/* background films: never show the phone's own play button over the still frame */
+video::-webkit-media-controls { display: none !important; -webkit-appearance: none; }
+video::-webkit-media-controls-panel { display: none !important; -webkit-appearance: none; }
+video::-webkit-media-controls-play-button { display: none !important; -webkit-appearance: none; }
+video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+video::-webkit-media-controls-overlay-play-button { display: none !important; -webkit-appearance: none; }
