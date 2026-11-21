@@ -382,3 +382,8 @@ html[dir="ltr"] .hv-media::after{background:linear-gradient(to right,rgba(18,13,
   .facts b{font-size:1.4rem}
 }
 .js.motion-on .craft .process-steps li{opacity:.62}
+/* video pause: tiny and out of sight. Appears on mouse-over or keyboard focus, faint on touch, stays visible while paused so the video can be resumed */
+.vid-pause{width:26px;height:26px;font-size:.5rem;border:0;background:rgba(18,13,9,.4);color:#f2e9dc;opacity:0;transition:opacity .35s var(--ease),background .3s var(--ease)}
+.hero-v:hover .vid-pause,.about-video:hover .vid-pause{opacity:.65}
+.vid-pause:hover,.vid-pause:focus-visible,.vid-pause.is-paused{opacity:1}
+@media (hover:none){ .vid-pause{opacity:.28} .vid-pause.is-paused{opacity:.9} }

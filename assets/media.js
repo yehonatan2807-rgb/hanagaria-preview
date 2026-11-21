@@ -27,6 +27,7 @@
         var paused = v.paused;
         btn.setAttribute("aria-label", btn.getAttribute(paused ? "data-l-play" : "data-l-pause"));
         btn.firstElementChild.textContent = paused ? "▶" : "❚❚";
+        btn.classList.toggle("is-paused", paused);
       }
       function play() { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
       if (still) { v.removeAttribute("autoplay"); v.pause(); }
@@ -42,6 +43,16 @@
           });
         }, { threshold: 0.15 }).observe(v);
       } else if (!userPaused) play();
+      /* the accessibility menu's "stop animations" also stops the videos, live */
+      var stopped = still;
+      new MutationObserver(function () {
+        var off = !root.classList.contains("motion-on");
+        if (off === stopped) return;
+        stopped = off; userPaused = off;
+        if (off) { v.pause(); return; }
+        var r = v.getBoundingClientRect();
+        if (r.bottom > 0 && r.top < window.innerHeight) play();
+      }).observe(root, { attributes: true, attributeFilter: ["class"] });
       label();
     });
   });
