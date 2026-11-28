@@ -180,6 +180,7 @@ body.proj .tabs,body.proj .prog,body.proj .foot{display:none!important}
 @media (max-width:900px){.projbox h2{font-size:1.9rem}.projbox>p{display:none}.projbox .spec div{padding:4px 0;font-size:.92rem}}
 .tohome{display:inline-flex;align-items:center;min-height:42px;padding:6px 14px;background:rgba(18,13,9,.88);border:1px solid rgba(242,233,220,.14);color:var(--ink);font-weight:600;text-decoration:none}
 @media (max-width:900px){.tohome{min-height:40px;padding:4px 10px;font-size:.88rem}}
+.demo-note{position:fixed;z-index:50;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);max-width:min(92vw,420px);padding:10px 16px;background:#120d09;color:var(--ink);border:1px solid var(--accent);font-weight:600;text-align:center;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}.demo-note.show{opacity:1;transform:translate(-50%,0)}
 </style>
 </head>
 <body>
@@ -247,6 +248,10 @@ body.proj .tabs,body.proj .prog,body.proj .foot{display:none!important}
 (function(){
 "use strict";
 var WA="972522635106",TEX=window.STUDIO_TEX||{};
+/* demo guard: until Shmulik approves, sending does not reach him. Launch day: set DEMO=false (and in assets/main.js). */
+var DEMO=true;
+function demoSay(){var t=document.getElementById("demoNote");if(!t){t=document.createElement("div");t.id="demoNote";t.className="demo-note";t.setAttribute("role","status");document.body.appendChild(t)}t.textContent="זה אתר לדוגמה. השליחה לשמוליק תופעל אחרי אישור שלו.";t.classList.add("show");clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove("show")},3200)}
+if(DEMO)document.addEventListener("click",function(e){var x=e.target.closest&&e.target.closest('a[href*="wa.me"],a[href^="tel:"]');if(x){e.preventDefault();e.stopPropagation();demoSay()}},true);
 var FIN={oak:{n:"אלון טבעי",c:"#c39a68",t:"oak"},walnut:{n:"אגוז",c:"#5c4332",t:"walnut"},smoke:{n:"אלון מעושן",c:"#75604c",t:"smoke"},white:{n:"לכה שמנת",c:"#e6dfd2"},greige:{n:"לכה גרז׳",c:"#aea290"},olive:{n:"ירוק זית",c:"#4f5743"},navy:{n:"כחול עמוק",c:"#212f42"},graphite:{n:"גרפיט",c:"#2a2927"}};
 var HANDLES={brass:"פליז",black:"שחור",none:"בלי ידית"};
 var STYLES={

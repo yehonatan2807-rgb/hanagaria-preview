@@ -1,8 +1,7 @@
 /* הנגריה · scroll stage "מהשרטוט לבית".
    The track is pinned; scroll drives one value q (0..1) through the five steps:
    sketch draws in, raw wood wipes across, colour arrives, the piece settles in place.
-   The last ~20% of the track is a hold on the finished piece. Once finished it stays
-   finished until reload, and the pin collapses so scrolling back up never stalls. */
+   The last ~20% of the track is a hold on the finished piece. Scrolling back up plays it in reverse. */
 (function () {
   "use strict";
   /* runs after main.js (both deferred) has set .motion-on */
@@ -44,22 +43,9 @@
   }
   function onScroll() {
     var m = measure();
-    target = done ? 1 : m;
+    target = m;
     if (!raf) raf = requestAnimationFrame(tick);
-    clearTimeout(idle); idle = setTimeout(maybeCollapse, 180);
-  }
-  /* once finished and scrolled fully past, remove the pinned stretch without moving anything on screen */
-  function maybeCollapse() {
-    if (!done || collapsed) return;
-    var r = sec.getBoundingClientRect();
-    if (r.bottom > 0) return;
-    var ref = sec.nextElementSibling; while (ref && !ref.getClientRects().length) ref = ref.nextElementSibling; ref = ref || sec; var before = ref.getBoundingClientRect().top;
-    var sb = root.style.scrollBehavior; root.style.scrollBehavior = "auto";
-    track.style.height = "auto"; collapsed = true;
-    /* the browser may already anchor the scroll; correct only what actually moved */
-    var shift = ref.getBoundingClientRect().top - before;
-    if (Math.abs(shift) > 0.5) window.scrollTo(0, window.scrollY + shift);
-    root.style.scrollBehavior = sb;
+    
   }
   steps.forEach(function (li) { li.classList.remove("on"); });
   paint(0); onScroll();

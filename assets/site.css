@@ -441,3 +441,6 @@ video::-webkit-media-controls-overlay-play-button { display: none !important; -w
 @media (max-width:1180px) and (min-width:961px){.nav ul{gap:18px}}
 @media (max-width:760px){.studio-cta-in{flex-direction:column;align-items:stretch}}
 .site-header.menu-open{background:#120d09;color:#f2e9dc}
+.demo-toast{z-index:130;max-width:min(92vw,420px);width:max-content;text-align:center;border-radius:0;background:#120d09;color:#f2e9dc;border:1px solid #cf9d5c;font-weight:600}
+/* room under the floating buttons */
+@media (max-width:960px){.site-footer{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}}

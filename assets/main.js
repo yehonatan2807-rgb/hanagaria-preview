@@ -22,6 +22,26 @@
     } catch (e) {}
   }
 
+  /* ---------- demo guard ----------
+     Until Shmulik approves the site, call and WhatsApp do not reach him: a tap shows a short note instead.
+     Launch day: set DEMO = false here and in studio.html. */
+  var DEMO = true;
+  var demoToast = null;
+  function demoSay() {
+    if (!demoToast) { demoToast = document.createElement("div"); demoToast.className = "toast demo-toast"; demoToast.setAttribute("role", "status"); document.body.appendChild(demoToast); }
+    demoToast.textContent = (document.documentElement.lang || "he").indexOf("he") === 0 ? "זה אתר לדוגמה. הכפתור יופעל אחרי אישור של שמוליק." : "This is a preview. This button goes live once the owner approves.";
+    demoToast.classList.add("show");
+    clearTimeout(demoToast.t); demoToast.t = setTimeout(function () { demoToast.classList.remove("show"); }, 3200);
+  }
+  if (DEMO) {
+    /* the note's live region exists from the start, so screen readers announce it */
+    demoToast = document.createElement("div"); demoToast.className = "toast demo-toast"; demoToast.setAttribute("role", "status"); document.body.appendChild(demoToast);
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="tel:"],a[href*="wa.me"],a[href*="whatsapp"]');
+      if (a) { e.preventDefault(); e.stopPropagation(); demoSay(); }
+    }, true);
+  }
+
   /* ---------- accessibility menu (persisted per visitor) ---------- */
   var A11Y = ["text", "contrast", "links", "font", "motion"];
   var a11yState = store.get("a11y") || {};
@@ -175,6 +195,7 @@
         lines.push((lab ? lab.textContent : inp.name) + ": " + inp.value.trim());
       });
       track("form_whatsapp");
+      if (DEMO) { demoSay(); return; }
       window.open(waLink(lines.filter(Boolean).join("\n")), "_blank", "noopener");
     });
   });
